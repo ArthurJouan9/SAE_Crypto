@@ -44,5 +44,55 @@ if __name__ == "__main__":
 
     brute_force_caesar(file_path)
 
+def vigenere_decrypt(ciphertext, key):
+    """
+    Déchiffre un message chiffré avec le chiffrement de Vigenère en utilisant une clé donnée.
+    """
+    decrypted_text = []
+    key_length = len(key)
+    key_as_int = [ord(i) - ord('A') for i in key]  # Convertir la clé en valeurs ASCII
+    ciphertext_int = [ord(i) - ord('A') for i in ciphertext if i.isalpha()]  # Convertir le texte chiffré
+
+    key_index = 0  # Indice pour parcourir la clé
+
+    for char in ciphertext:
+        if char.isalpha():  # Vérifier si le caractère est alphabétique
+            value = (ord(char) - ord('A') - key_as_int[key_index]) % 26
+            decrypted_text.append(chr(value + ord('A')))  # Convertir en caractère
+            key_index = (key_index + 1) % key_length  # Avancer dans la clé
+        else:
+            decrypted_text.append(char)  # Ajouter les caractères non alphabétiques sans changement
+
+    return ''.join(decrypted_text)
+
+def read_ciphertext(file_path):
+    """
+    Lit le contenu d'un fichier et retourne le texte chiffré.
+    """
+    try:
+        with open(file_path, 'r') as file:
+            return file.read().strip()  # Lire le fichier et enlever les espaces inutiles
+    except FileNotFoundError:
+        print(f"Erreur : le fichier '{file_path}' est introuvable.")
+        sys.exit(1)
+
+# Vérification de l'argument en ligne de commande
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Utilisation : python3 main.py <nom_du_fichier>")
+        sys.exit(1)
+
+    # Récupération du chemin du fichier passé en argument
+    file_path = sys.argv[1]
+
+    # Clé pour le déchiffrement
+    key = "CINQ"
+
+    # Lire le texte chiffré à partir du fichier
+    ciphertext = read_ciphertext(file_path)
+
+    # Déchiffrer le message
+    decrypted_message = vigenere_decrypt(ciphertext, key)
+    print(f"Message déchiffré : {decrypted_message}")
 
 
