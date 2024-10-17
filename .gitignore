@@ -1,0 +1,60 @@
+# Fichiers et dossiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environnement virtuel
+venv/
+env/
+ENV/
+.venv/
+.pyenv/
+
+# Configuration d'éditeur et IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Fichiers de configuration
+*.env
+*.ini
+*.cfg
+
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+
+# Fichiers de base de données locales
+*.sqlite3
+db.sqlite3
+
+# Caches de pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Caches de tests
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Caches mypy
+.mypy_cache/
+
+# Caches pytest
+.pytest_cache/
+
+# Dossiers de tests et artefacts
+htmlcov/
+.coverage
+.cache/
+dist/
+build/
+*.egg-info/
+.eggs/
