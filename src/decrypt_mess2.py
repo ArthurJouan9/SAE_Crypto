@@ -1,31 +1,33 @@
-def vigenere_decrypt(ciphertext, key):
+import sys
+
+def dechiffrer_vigenere(texte_chiffre, cle):
     """
     Déchiffre un message chiffré avec le chiffrement de Vigenère en utilisant une clé donnée.
     """
-    decrypted_text = []
-    key_length = len(key)
-    key_as_int = [ord(i) - ord('A') for i in key]  
-    ciphertext_int = [ord(i) - ord('A') for i in ciphertext if i.isalpha()]  
+    texte_dechiffre = []
+    longueur_cle = len(cle)
+    cle_int = [ord(i) - ord('A') for i in cle]  
+    texte_chiffre_int = [ord(i) - ord('A') for i in texte_chiffre if i.isalpha()]  
 
-    key_index = 0  
+    index_cle = 0  
 
-    for char in ciphertext:
-        if char.isalpha():  
-            value = (ord(char) - ord('A') - key_as_int[key_index]) % 26
-            decrypted_text.append(chr(value + ord('A')))  
-            key_index = (key_index + 1) % key_length  
+    for caractere in texte_chiffre:
+        if caractere.isalpha():  
+            valeur = (ord(caractere) - ord('A') - cle_int[index_cle]) % 26
+            texte_dechiffre.append(chr(valeur + ord('A')))  
+            index_cle = (index_cle + 1) % longueur_cle  
         else:
-            decrypted_text.append(char)  
+            texte_dechiffre.append(caractere)  
 
-    return ''.join(decrypted_text)
+    return ''.join(texte_dechiffre)
 
-def read_ciphertext(file_path):
+def lire_texte_chiffre(chemin_fichier):
     """
     Lit le contenu d'un fichier et retourne le texte chiffré.
     """
     try:
-        with open(file_path, 'r') as file:
-            return file.read().strip() 
+        with open(chemin_fichier, 'r') as fichier:
+            return fichier.read().strip() 
     except FileNotFoundError:
-        print(f"Erreur : le fichier '{file_path}' est introuvable.")
+        print(f"Erreur : le fichier '{chemin_fichier}' est introuvable.")
         sys.exit(1)

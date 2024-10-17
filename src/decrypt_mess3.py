@@ -1,20 +1,21 @@
 GRILLE = (6, 6, "AJFB82YN9UX1GS0KPI3QOE74CZVHRLT5WD6M")
 
-def fon(mes, code):
+def preparer_message(message, code):
     """
-    Fonction de préparation du message pour le déchiffrement ADFGVX
+    Prépare le message pour le déchiffrement ADFGVX en répartissant les caractères
+    en fonction de la longueur du code.
     """
-    liste = [[] for i in range(len(code))]
+    liste = [[] for _ in range(len(code))]
     cpt = 0
-    for carac in mes:
-        if len(liste[cpt]) == len(mes) / len(code):
+    for caractere in message:
+        if len(liste[cpt]) == len(message) / len(code):
             cpt += 1
-        liste[cpt].append(carac)
+        liste[cpt].append(caractere)
     return liste
 
-def liste_par_2(message):
+def separer_par_paires(message):
     """
-    Sépare le message en paires de lettres
+    Sépare le message en paires de lettres ADFGVX.
     """
     res = []
     paire = ""
@@ -28,19 +29,19 @@ def liste_par_2(message):
             paire = ""
     return res
 
-def adfgvx(message):
+def dechiffrer_adfgvx(message):
     """
-    Déchiffre un message en utilisant le code ADFGVX
+    Déchiffre un message en utilisant le code ADFGVX avec la grille prédéfinie.
     """
     res = ""
-    liste = liste_par_2(message)
-    var = ["A", "D", "F", "G", "V", "X"]
+    liste_paires = separer_par_paires(message)
+    symboles = ["A", "D", "F", "G", "V", "X"]
     
-    for double in liste:
-        if double[0] in var and double[1] in var:
-            indice1 = var.index(double[0])
-            indice2 = var.index(double[1])
+    for paire in liste_paires:
+        if paire[0] in symboles and paire[1] in symboles:
+            indice1 = symboles.index(paire[0])
+            indice2 = symboles.index(paire[1])
             res += GRILLE[2][indice1 * GRILLE[0] + indice2]
         else:
-            res += double
+            res += paire
     return res
