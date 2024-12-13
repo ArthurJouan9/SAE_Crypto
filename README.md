@@ -22,3 +22,21 @@ python3 src/main.py message/<fichier_contenant_chiffré>
     - **message1_chiffre.txt** : lance un déchiffrement césar automatiquement
     - **message2_chiffre.txt** : lance un déchiffrement de **Vigenère** automatiquement avec la **clé "CINQ"**
     - **message3_chiffre.txt** : lance un déchiffrement **ADFGVX** automatiquement avec la **clé "CRYPTO"** et la **matrice de taille 6*6 suivante : "AJFB82YN9UX1GS0KPI3QOE74CZVHRLT5WD6M"**
+
+# Partie 2
+## Utilisation
+### Visualisation des messages
+
+Pour visualiser les échanges ayant eu lieu via le protocole UDP, placez vous à la racine du projet et exécutez la commande suivante:
+
+```python
+python3 ./src/analyse_pca.py
+```
+Tous les messages n'étant pas en clair sont les messages à déchiffrer. On utilise leur représentation hexadecimale pour notre déchiffrement.
+
+### Déchiffrement
+
+Pour lancer le déchiffrement, placez vous à la racine du projet et exécutez la commande suivante:
+```python
+python3 ./src/dechiffrement_partie2.py
+```

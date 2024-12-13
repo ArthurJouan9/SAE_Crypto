@@ -31,5 +31,5 @@ def analyse_pcapng(chemin_fichier):
             else:
                 print("Pas de données brutes disponibles")
 
-chemin_fichier = 'trace_groupe_13.pcapng'
+chemin_fichier = 'data/trace_groupe_13.pcapng'
 analyse_pcapng(chemin_fichier)
